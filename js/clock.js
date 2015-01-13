@@ -4,6 +4,8 @@
  * A small function to return the current time to the screen.
  *
  */
+'use strict';
+
 function getTime() {
     // Execute the function every second.
     window.setTimeout(getTime, 1000);
