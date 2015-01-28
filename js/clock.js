@@ -1,7 +1,7 @@
 /*
  * author: Garrett Squire, gsquire
  *
- * A small function to return the current time to the screen.
+ * A small script to display a clock and some weather information.
  *
  */
 "use strict";
@@ -19,8 +19,7 @@ function getTime() {
         time_string += seconds;
     }
 
-    var clock = document.getElementById("g_clock");
-    clock.innerHTML = time_string;
+    $("#g_clock").html(time_string);
 }
 
 // Return the background color of a forecast given the temperature.
@@ -41,20 +40,31 @@ function getForecastColor(temperature) {
     return colorClass;
 }
 
+// Called when we fail to get the LAT and LONG of the user.
+function geoFailure() {
+    console.log("Could not get your location!");
+}
+
 // Use the Forecast.io API to get the current weather information.
 function getTemp() {
     var API_KEY = "146c4dcccbfcbf15a5c03790ae499447";
+
     var lat = "35.300399"
     var lon = "-120.662362"
-    var url = "https://api.forecast.io/forecast/" + API_KEY + "/" + lat + "," + lon;
+    navigator.geolocation.getCurrentPosition(function (position) {
+        lat = position.coords.latitude;
+        lon = position.coords.longitude;
+    }, geoFailure);
+    var url =
+        "https://api.forecast.io/forecast/" + API_KEY + "/" + lat + "," + lon;
 
     $.ajax( {
         url: url,
         dataType: "jsonp",
         success: function (forecastData) {
-            console.log(forecastData);
             var image = "img/" + forecastData["daily"]["icon"] + ".png";
-            var bg_color = getForecastColor(forecastData["daily"]["data"][0]["temperatureMax"]);
+            var bg_color = getForecastColor(
+                            forecastData["daily"]["data"][0]["temperatureMax"]);
 
             $("#forecastLabel").html(forecastData["daily"]["summary"]);
             $("#forecastIcon").attr("src", image);
