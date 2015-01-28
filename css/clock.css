@@ -2,14 +2,39 @@
     text-align: center;
 }
 
+#forecastLabel {
+    text-align: center;
+}
+
+#forecastIcon {
+    display: block;
+    margin: 0 auto;
+}
+
 #g_clock {
     text-align: center;
 }
 
-body {
-    background-color: #009933;
-}
-
 p {
     text-align: center;
+}
+
+.cold {
+    background-color: #95A5A6;
+}
+
+.chilly {
+    background-color: #1ABC9C;
+}
+
+.nice {
+    background-color: #2980B9;
+}
+
+.warm {
+    background-color: #E67E22;
+}
+
+.hot {
+    background-color: #E74C3C;
 }
