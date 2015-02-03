@@ -4,17 +4,45 @@
         <meta charset="UTF-8">
         <title>Clock</title>
         <link rel="stylesheet" type="text/css" href="css/clock.css">
+        <link rel="stylesheet" type="text/css" href="css/alarm.css">
     </head>
     <body>
         <h1 class="header">Garrett's Clock</h1>
-        <p>
-            No Alarms Set.
-        </p>
         <div id="g_clock"></div>
-        <br><br><br>
+
         <div id="forecastLabel"></div>
-        <br><br><br>
-        <img id="forecastIcon"></img>
+
+        <img id="forecastIcon" alt="Forecast Icon"></img>
+
+        <div id="alarmContainer">
+            <div id="alarmHeader" class="flexable">
+                <h2>Alarms</h2>
+                <input type="button" value="Add Alarm" class="button" id="addAlarmButton"/>
+            </div>
+            <div id="alarms"></div>
+        </div>
+
+        <div id="mask" class="hide">
+            <div id="popup" class="hide">
+                <h1>Add Alarm</h1>
+                <div id="timeContainer">
+                    <select id="hours">
+                    </select>
+                    <select id="mins">
+                    </select>
+                    <select id="ampm">
+                        <option>am</option>
+                        <option>pm</option>
+                    </select>
+                </div>
+                <input type="text" id="alarmName" placeholder="Alarm Name"/>
+                <div class="flexable">
+                    <input type="button" value="Cancel" class="button" id="cancelAlarmButton"/>
+                    <input type="button" value="Save Alarm" class="button" id="saveAlarmButton"/>
+                </div>
+            </div>
+        </div>
+
         <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
         <script type="text/javascript" src="js/clock.js"></script>
     </body>

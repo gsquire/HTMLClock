@@ -4,15 +4,18 @@
 
 #forecastLabel {
     text-align: center;
+    padding-bottom: 40px;
 }
 
 #forecastIcon {
     display: block;
     margin: 0 auto;
+    padding-bottom: 20px;
 }
 
 #g_clock {
     text-align: center;
+    padding-bottom: 40px;
 }
 
 p {

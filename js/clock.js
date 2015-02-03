@@ -73,8 +73,67 @@ function getTemp() {
     } );
 }
 
+// The following functions mainpulate the DOM to show and hide the adding
+// and removing of an alarm.
+function showAlarmPopup() {
+    $("#mask").removeClass("hide");
+    $("#popup").removeClass("hide");
+}
+
+function hideAlarmPopup() {
+    $("#mask").addClass("hide");
+    $("popup").addClass("hide");
+}
+
+function insertAlarm(hours, mins, ampm, alarmName) {
+    // This will be the top level of the new alarm.
+    var newAlarm = $("<div></div>");
+    newAlarm.addClass("flexable");
+
+    var alarmSpec = $("<div></div>");
+    alarmSpec.addClass("name");
+    alarmSpec.html(alarmName);
+
+    var alarmTime = $("<div></div>");
+    alarmTime.addClass("time");
+    alarmTime.html(hours + ":" + mins + " " + ampm);
+
+    newAlarm.append(alarmSpec);
+    newAlarm.append(alarmTime);
+
+    $("#alarms").append(newAlarm);
+}
+
+// Get the user input and save the new alarm.
+function addAlarm() {
+    var hours = $("#hours").find(":selected").text();
+    var mins = $("#mins").find(":selected").text();
+    var ampm = $("#ampm").find(":selected").text();
+    var alarmName = $("#alarmName").val();
+
+    insertAlarm(hours, mins, ampm, alarmName);
+    hideAlarmPopup();
+}
+
+// Fill the options for the select options in hours and minutes.
+function fillSelects() {
+    for (var i = 1; i <= 12; i++) {
+        $("#hours").append("<option>" + i + "</option>");
+    }
+
+    for (var j = 5; j <= 60; j += 5) {
+        $("#mins").append("<option>" + j + "</option>");
+    }
+}
+
 // Call the functions once the DOM loads.
 $(document).ready(function () {
+    // Register the click event handlers.
+    $("#addAlarmButton").click(showAlarmPopup);
+    $("#cancelAlarmButton").click(hideAlarmPopup);
+    $("#saveAlarmButton").click(addAlarm);
+
+    fillSelects();
     getTime();
     getTemp();
 } );
