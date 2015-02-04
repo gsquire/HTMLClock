@@ -111,8 +111,23 @@ function addAlarm() {
     var ampm = $("#ampm").find(":selected").text();
     var alarmName = $("#alarmName").val();
 
-    insertAlarm(hours, mins, ampm, alarmName);
-    hideAlarmPopup();
+    // It's nicer to save this object into Parse.
+    var time = {
+        hours: hours,
+        mins: mins,
+        ampm: ampm
+    };
+    var AlarmObject = Parse.Object.extend("Alarm");
+    var alarmObject = new AlarmObject();
+
+    // Save the alarm to Parse.
+    alarmObject.save( {"time": time, "alarmName": alarmName}, {
+        success: function(object) {
+            insertAlarm(hours, mins, ampm, alarmName);
+            hideAlarmPopup();
+        }
+    } );
+
 }
 
 // Fill the options for the select options in hours and minutes.
@@ -121,9 +136,25 @@ function fillSelects() {
         $("#hours").append("<option>" + i + "</option>");
     }
 
-    for (var j = 5; j <= 60; j += 5) {
+    for (var j = 0; j <= 55; j += 5) {
         $("#mins").append("<option>" + j + "</option>");
     }
+}
+
+// Interact with Parse now.
+function getAllAlarms() {
+    Parse.initialize("oBE4i8C3eA0LxytpX8qolrZPQAHGEYGiiueJbtwK", "PabMP44i4foZaQoz3RjTRfMv1L7TSsbfAehbTZUM");
+
+    var AlarmObject = Parse.Object.extend("Alarm");
+    var query = new Parse.Query(AlarmObject);
+
+    query.find( {
+        success: function(results) {
+            for (var i = 0; i < results.length; i++) {
+                insertAlarm(results[i].get("time"), results[i].get("alarmName"));
+            }
+        }
+    } );
 }
 
 // Call the functions once the DOM loads.
@@ -136,4 +167,5 @@ $(document).ready(function () {
     fillSelects();
     getTime();
     getTemp();
+    getAllAlarms();
 } );
