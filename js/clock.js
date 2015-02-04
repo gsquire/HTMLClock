@@ -151,7 +151,12 @@ function getAllAlarms() {
     query.find( {
         success: function(results) {
             for (var i = 0; i < results.length; i++) {
-                insertAlarm(results[i].get("time"), results[i].get("alarmName"));
+                var timeObj = results[i].get("time");
+
+                insertAlarm(timeObj["hours"],
+                    timeObj["mins"],
+                    timeObj["ampm"],
+                    results[i].get("alarmName"));
             }
         }
     } );
