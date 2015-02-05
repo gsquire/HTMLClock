@@ -184,8 +184,8 @@ function deleteAlarm() {
         }
     } );
 
-    // Reload the page.
-    location.reload();
+    // Remove the alarm from the DOM.
+    $("#" + objectId).remove();
 }
 
 // Call the functions once the DOM loads.
