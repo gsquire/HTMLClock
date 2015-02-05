@@ -167,9 +167,24 @@ function getAllAlarms() {
     } );
 }
 
-// Delete an alarm with the hidden objectId.
+// Delete an alarm with the objectId associated with it.
 function deleteAlarm() {
-    alert($(this).attr("id"));
+    var AlarmClock = Parse.Object.extend("Alarm");
+    var query = Parse.Query(AlarmClock);
+    var objectId = $(this).attr("id");
+
+    query.get(objectId, {
+        success: function(alarmObject) {
+            alarmObject.destroy( {
+                success: function(alarmObject) {
+                    alert("The alarm was successfully deleted.");
+                }
+            } );
+        }
+    } );
+
+    // Now display the alarms again after deleting the one we clicked.
+    getAllAlarms();
 }
 
 // Call the functions once the DOM loads.
