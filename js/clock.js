@@ -90,7 +90,6 @@ function insertAlarm(hours, mins, ampm, alarmName, objectId) {
     var newAlarm = $("<div></div>");
     newAlarm.addClass("flexable");
     newAlarm.attr("id", objectId);
-    console.log("in the insert function: " + objectId);
 
     var alarmSpec = $("<div></div>");
     alarmSpec.addClass("name");
@@ -170,7 +169,7 @@ function getAllAlarms() {
 
 // Delete an alarm with the hidden objectId.
 function deleteAlarm() {
-    alert("I am deleting this.");
+    alert($(this).attr("id"));
 }
 
 // Call the functions once the DOM loads.
