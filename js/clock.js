@@ -125,7 +125,7 @@ function addAlarm() {
     // Save the alarm to Parse.
     alarmObject.save( {"time": time, "alarmName": alarmName}, {
         success: function(object) {
-            insertAlarm(hours, mins, ampm, alarmName, object.id);
+            insertAlarm(hours, mins, ampm, alarmName, object.getObjectId());
             hideAlarmPopup();
         }
     } );
@@ -155,7 +155,6 @@ function getAllAlarms() {
             for (var i = 0; i < results.length; i++) {
                 var timeObj = results[i].get("time");
                 var id = results[i].get("objectId");
-                console.log(id);
 
                 insertAlarm(timeObj["hours"],
                     timeObj["mins"],
