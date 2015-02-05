@@ -160,6 +160,7 @@ function getAllAlarms() {
                     timeObj["ampm"],
                     results[i].get("alarmName"),
                     id);
+
                 // Add a click handler to be able to delete later.
                 $("#" + id).click(deleteAlarm);
             }
@@ -183,8 +184,8 @@ function deleteAlarm() {
         }
     } );
 
-    // Now display the alarms again after deleting the one we clicked.
-    getAllAlarms();
+    // Reload the page.
+    location.reload();
 }
 
 // Call the functions once the DOM loads.
