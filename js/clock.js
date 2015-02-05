@@ -82,13 +82,14 @@ function showAlarmPopup() {
 
 function hideAlarmPopup() {
     $("#mask").addClass("hide");
-    $("popup").addClass("hide");
+    $("#popup").addClass("hide");
 }
 
-function insertAlarm(hours, mins, ampm, alarmName) {
+function insertAlarm(hours, mins, ampm, alarmName, objectId) {
     // This will be the top level of the new alarm.
     var newAlarm = $("<div></div>");
     newAlarm.addClass("flexable");
+    newAlarm.attr("id", objectId);
 
     var alarmSpec = $("<div></div>");
     alarmSpec.addClass("name");
@@ -123,7 +124,7 @@ function addAlarm() {
     // Save the alarm to Parse.
     alarmObject.save( {"time": time, "alarmName": alarmName}, {
         success: function(object) {
-            insertAlarm(hours, mins, ampm, alarmName);
+            insertAlarm(hours, mins, ampm, alarmName, object.id);
             hideAlarmPopup();
         }
     } );
@@ -152,14 +153,23 @@ function getAllAlarms() {
         success: function(results) {
             for (var i = 0; i < results.length; i++) {
                 var timeObj = results[i].get("time");
+                var id = results[i].get("objectId");
 
                 insertAlarm(timeObj["hours"],
                     timeObj["mins"],
                     timeObj["ampm"],
-                    results[i].get("alarmName"));
+                    results[i].get("alarmName"),
+                    id);
+                // Add a click handler to be able to delete later.
+                $("#" + id).click(deleteAlarm);
             }
         }
     } );
+}
+
+// Delete an alarm with the hidden objectId.
+function deleteAlarm() {
+    alert("I am deleting this.");
 }
 
 // Call the functions once the DOM loads.
