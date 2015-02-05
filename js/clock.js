@@ -170,7 +170,7 @@ function getAllAlarms() {
 // Delete an alarm with the objectId associated with it.
 function deleteAlarm() {
     var AlarmClock = Parse.Object.extend("Alarm");
-    var query = Parse.Query(AlarmClock);
+    var query = new Parse.Query(AlarmClock);
     var objectId = $(this).attr("id");
 
     query.get(objectId, {
