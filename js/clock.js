@@ -154,7 +154,7 @@ function getAllAlarms() {
         success: function(results) {
             for (var i = 0; i < results.length; i++) {
                 var timeObj = results[i].get("time");
-                var id = results[i].get("objectId");
+                var id = results[i].id;
 
                 insertAlarm(timeObj["hours"],
                     timeObj["mins"],
