@@ -89,6 +89,8 @@ function insertAlarm(hours, mins, ampm, alarmName, objectId) {
     // This will be the top level of the new alarm.
     var newAlarm = $("<div></div>");
     newAlarm.addClass("flexable");
+
+    // This is set to select within jQuery later so we can delete it.
     newAlarm.attr("id", objectId);
 
     var alarmSpec = $("<div></div>");
@@ -174,11 +176,12 @@ function deleteAlarm() {
     var query = new Parse.Query(AlarmClock);
     var objectId = $(this).attr("id");
 
+    // I love callback functions...
     query.get(objectId, {
         success: function(alarmObject) {
             alarmObject.destroy( {
                 success: function(alarmObject) {
-                    alert("The alarm was successfully deleted.");
+                    console.log("The alarm was successfully deleted.");
                 }
             } );
         }
