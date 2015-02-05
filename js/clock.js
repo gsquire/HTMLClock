@@ -90,6 +90,7 @@ function insertAlarm(hours, mins, ampm, alarmName, objectId) {
     var newAlarm = $("<div></div>");
     newAlarm.addClass("flexable");
     newAlarm.attr("id", objectId);
+    console.log("in the insert function: " + objectId);
 
     var alarmSpec = $("<div></div>");
     alarmSpec.addClass("name");
@@ -154,6 +155,7 @@ function getAllAlarms() {
             for (var i = 0; i < results.length; i++) {
                 var timeObj = results[i].get("time");
                 var id = results[i].get("objectId");
+                console.log(id);
 
                 insertAlarm(timeObj["hours"],
                     timeObj["mins"],
