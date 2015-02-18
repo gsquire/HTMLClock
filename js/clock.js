@@ -193,13 +193,12 @@ function deleteAlarm() {
 }
 
 function signinCallback(authResponse) {
-    var gplus_url = "https://www.googleapis.com/plus/v1/people/me";
-
     if (authResponse["status"]["signed_in"]) {
         gapi.client.load("plus", "v1", function() {
             var request = gapi.client.plus.people.get( { "userId": "me" } );
 
             request.execute(function(resp) {
+                $("#userInformation").html("Welcome, " + resp["displayName"]);
                 console.log(resp);
             } );
         } );

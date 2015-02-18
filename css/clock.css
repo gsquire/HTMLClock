@@ -42,7 +42,7 @@ p {
     background-color: #E74C3C;
 }
 
-#signinButton {
-    display: block;
-    margin: 0 auto;
+#userInformation {
+    text-align: right;
+    padding-right: 20px;
 }
