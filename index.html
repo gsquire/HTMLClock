@@ -23,7 +23,7 @@
                 FB.init({
                     appId: '1572714179640805',
                     xfbml: true,
-                    version: 'v2.2'
+                    version: 'v2.0'
                 });
 
                 function statusChangeCallback(response) {
@@ -92,10 +92,8 @@
             </div>
         </div>
 
-        <div class="fb-login-button" data-max-rows="1" data-size="large" data-show-faces="false" data-auto-logout-link="true"></div>
-
-        <fb:login-button scope="email" onlogin="checkLoginState();">
-        </fb:login-button>
+        <fb:login-button class="fb-login-button" data-max-rows="1" data-size="large" data-show-faces="false" data-auto-logout-link="true" scope="email" onlogin="checkLoginState();">
+        Login with Facebook</fb:login-button>
 
         <div id="fbLogin">
         </div>
