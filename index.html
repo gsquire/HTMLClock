@@ -14,7 +14,7 @@
             var js, fjs = d.getElementsByTagName(s)[0];
             if (d.getElementById(id)) return;
             js = d.createElement(s); js.id = id;
-            js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=1572714179640805&version=v2.0";
+            js.src = "//connect.facebook.net/en_US/sdk.js;
             fjs.parentNode.insertBefore(js, fjs);
             }(document, 'script', 'facebook-jssdk'));
         </script>
@@ -22,8 +22,9 @@
             window.fbAsyncInit = function() {
                 FB.init({
                     appId: '1572714179640805',
+                    cookie: true,
                     xfbml: true,
-                    version: 'v2.0'
+                    version: 'v2.2'
                 });
 
                 function statusChangeCallback(response) {
@@ -92,8 +93,9 @@
             </div>
         </div>
 
-        <fb:login-button class="fb-login-button" data-max-rows="1" data-size="large" data-show-faces="false" data-auto-logout-link="true" scope="email" onlogin="checkLoginState();">
-        Login with Facebook</fb:login-button>
+        <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+            Login with Facebook
+        </fb:login-button>
 
         <div id="fbLogin">
         </div>
