@@ -192,31 +192,12 @@ function deleteAlarm() {
     $("#" + objectId).remove();
 }
 
-// Log in to Google.
-function signinCallback(response) {
-    if (response["status"]["signed_in"]) {
-        $("signinButton").hide();
-        console.log("Yes");
-    } else {
-        console.log(repsonse["error"]);
-    }
-}
-
 // Call the functions once the DOM loads.
 $(document).ready(function () {
     // Register the click event handlers.
     $("#addAlarmButton").click(showAlarmPopup);
     $("#cancelAlarmButton").click(hideAlarmPopup);
     $("#saveAlarmButton").click(addAlarm);
-
-    $("#signinButton").click(function () {
-        console.log("Click worked");
-        var params = {
-            "callback": signinCallback
-        }
-
-        gapi.auth.signIn(params);
-    } );
 
     fillSelects();
     getTime();
