@@ -79,8 +79,7 @@
                 };
 
                 // Attach a click listener to a button to trigger the flow.
-                var signinButton = document.getElementById('signinButton');
-                gapi.auth.signIn(additionalParams); // Will use page level configuration
+                $("#signinButton").click(gapi.auth.signIn(additionalParams)); // Will use page level configuration
             } );
         }
         </script>
