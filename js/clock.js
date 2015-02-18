@@ -192,6 +192,15 @@ function deleteAlarm() {
     $("#" + objectId).remove();
 }
 
+function signinCallback(authResponse) {
+    if (authResponse["status"]["signed_in"]) {
+        console.log(authResponse);
+    }
+    else {
+        console.log("Sign-in error: " + authResponse["error"]);
+    }
+}
+
 // Call the functions once the DOM loads.
 $(document).ready(function () {
     // Register the click event handlers.

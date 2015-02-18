@@ -60,16 +60,6 @@
             </span>
         </span>
 
-        <script>
-            function signinCallback(authResult) {
-                if (authResult["status"]["signed_in"]) {
-                    document.getElementById("signinButton").setAttribute("style", "display: none");
-                }
-                else {
-                    console.log("Sign-in state: " + authResult["error"]);
-                }
-            }
-        </script>
         <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
         <script src="//www.parsecdn.com/js/parse-1.3.4.min.js"></script>
         <script type="text/javascript" src="js/clock.js"></script>
