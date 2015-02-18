@@ -193,8 +193,14 @@ function deleteAlarm() {
 }
 
 function signinCallback(authResponse) {
+    var gplus_url = "https://www.googleapis.com/plus/v1/people/me";
+
     if (authResponse["status"]["signed_in"]) {
         console.log(authResponse);
+
+        $.get(gplus_url, function(resp) {
+            console.log(resp["displayName"]);
+        } );
     }
     else {
         console.log("Sign-in error: " + authResponse["error"]);
