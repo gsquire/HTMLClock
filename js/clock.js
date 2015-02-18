@@ -196,10 +196,12 @@ function signinCallback(authResponse) {
     var gplus_url = "https://www.googleapis.com/plus/v1/people/me";
 
     if (authResponse["status"]["signed_in"]) {
-        console.log(authResponse);
+        gapi.client.load("plus", "v1", function() {
+            var request = gapi.client.plus.people.get( { "userid": "me" } );
 
-        $.get(gplus_url, function(resp) {
-            console.log(resp["displayName"]);
+            request.execute(function(resp) {
+                console.log(resp);
+            } );
         } );
     }
     else {
