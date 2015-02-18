@@ -9,6 +9,15 @@
         <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
     </head>
     <body>
+        <div id="fb-root"></div>
+        <script>(function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=1572714179640805&version=v2.0";
+            fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+        </script>
         <script>
             window.fbAsyncInit = function() {
                 FB.init({
@@ -19,7 +28,7 @@
 
                 function statusChangeCallback(response) {
                     if (response.status === 'connected') {
-                        // TODO
+                        testApi();
                     }
                     else if (response.status = 'not_authorized') {
                         $("#fbLogin").html("Please log in to FB");
@@ -35,14 +44,6 @@
                     } );
                 }
             };
-
-            (function(d, s, id) {
-                var js, fjs = d.getElementsByTagName(s)[0];
-                if (d.getElementById(id)) return;
-                js = d.createElement(s); js.id = id;
-                js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=1572714179640805&version=v2.0";
-                fjs.parentNode.insertBefore(js, fjs);
-            }(document, 'script', 'facebook-jssdk'));
 
             function testAPI() {
                 FB.api("/me", function(response) {
