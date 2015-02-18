@@ -198,7 +198,6 @@ $(document).ready(function () {
     $("#addAlarmButton").click(showAlarmPopup);
     $("#cancelAlarmButton").click(hideAlarmPopup);
     $("#saveAlarmButton").click(addAlarm);
-    $("#signinButton").click(signinCallback);
 
     fillSelects();
     getTime();
