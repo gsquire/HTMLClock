@@ -197,7 +197,7 @@ function signinCallback(authResponse) {
 
     if (authResponse["status"]["signed_in"]) {
         gapi.client.load("plus", "v1", function() {
-            var request = gapi.client.plus.people.get( { "userid": "me" } );
+            var request = gapi.client.plus.people.get( { "userId": "me" } );
 
             request.execute(function(resp) {
                 console.log(resp);
