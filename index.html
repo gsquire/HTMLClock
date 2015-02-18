@@ -5,8 +5,6 @@
         <title>Clock</title>
         <link rel="stylesheet" type="text/css" href="css/clock.css">
         <link rel="stylesheet" type="text/css" href="css/alarm.css">
-
-        <script src="https://apis.google.com/js/client:platform.js" async defer></script>
     </head>
     <body>
         <h1 class="header">Garrett's Clock</h1>
@@ -53,11 +51,12 @@
         <meta name="google-signin-scope" content="https://www.googleapis.com/auth/plus.login" />
         <meta name="google-signin-requestvisibleactions" content="http://schema.org/AddAction" />
         <meta name="google-signin-cookiepolicy" content="single_host_origin" />
-        <script src="https://apis.google.com/js/client:platform.js?onload=render" async defer>
+        <script src="https://apis.google.com/js/platform.js?onload=render" async defer>
             function signinCallback(authResult) {
                 if (authResult['status']['signed_in']) {
                     // Update the app to reflect a signed in user
                     // Hide the sign-in button now that the user is authorized, for example:
+                    console.log("User logged in");
                     document.getElementById('signinButton').setAttribute('style', 'display: none');
                     } else {
                     // Update the app to reflect a signed out user
