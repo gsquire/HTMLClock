@@ -192,12 +192,20 @@ function deleteAlarm() {
     $("#" + objectId).remove();
 }
 
+// Log in to FB.
+function triggerFBLogin() {
+    FB.Login(function (response) {
+        statusChangeCallback(response);
+    } );
+}
+
 // Call the functions once the DOM loads.
 $(document).ready(function () {
     // Register the click event handlers.
     $("#addAlarmButton").click(showAlarmPopup);
     $("#cancelAlarmButton").click(hideAlarmPopup);
     $("#saveAlarmButton").click(addAlarm);
+    $("#fbLoginButton").click(triggerFBLogin);
 
     fillSelects();
     getTime();
