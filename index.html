@@ -56,14 +56,6 @@
             <div id="g_clock"></div>
         </h3>
 
-        <div class="fb-login-button" data-max-rows="1" data-size="large" data-show-faces="false" data-auto-logout-link="true"></div>
-
-        <fb:login-button scope="email" onlogin="checkLoginState();">
-        </fb:login-button>
-
-        <div id="fbLogin">
-        </div>
-
         <div id="forecastLabel"></div>
 
         <img id="forecastIcon" alt="Forecast Icon"></img>
@@ -97,6 +89,14 @@
                     <input type="button" value="Save Alarm" class="button" id="saveAlarmButton"/>
                 </div>
             </div>
+        </div>
+
+        <div class="fb-login-button" data-max-rows="1" data-size="large" data-show-faces="false" data-auto-logout-link="true"></div>
+
+        <fb:login-button scope="email" onlogin="checkLoginState();">
+        </fb:login-button>
+
+        <div id="fbLogin">
         </div>
 
         <script src="//www.parsecdn.com/js/parse-1.3.4.min.js"></script>

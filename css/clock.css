@@ -41,3 +41,11 @@ p {
 .hot {
     background-color: #E74C3C;
 }
+
+.fb-login-button {
+    text-align: center;
+}
+
+#fbLogin {
+    text-align: center;
+}
