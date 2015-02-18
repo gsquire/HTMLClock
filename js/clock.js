@@ -215,7 +215,7 @@ $(document).ready(function () {
             "callback": signinCallback
         }
 
-        gapi.auth.signin(params);
+        gapi.auth.signIn(params);
     } );
 
     fillSelects();
