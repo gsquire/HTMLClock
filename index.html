@@ -9,37 +9,6 @@
         <script src="https://apis.google.com/js/client:platform.js" async defer></script>
     </head>
     <body>
-        <meta name="google-signin-clientid" content="302057691424-bq6vvd8vari4sjcg126foe00lhgdrdkp.apps.googleusercontent.com" />
-        <meta name="google-signin-scope" content="https://www.googleapis.com/auth/plus.login" />
-        <meta name="google-signin-requestvisibleactions" content="http://schema.org/AddAction" />
-        <meta name="google-signin-cookiepolicy" content="single_host_origin" />
-        <meta name="google-signin-callback" content="signinCallback" />
-        <script src="https://apis.google.com/js/client:platform.js?onload=render" async defer>
-            /* Executed when the APIs finish loading */
-            function render() {
-
-                // Additional params
-                var additionalParams = {
-                    'theme' : 'dark'
-                };
-
-                gapi.signin.render('myButton', additionalParams);
-            }
-            function signinCallback(authResult) {
-                if (authResult['status']['signed_in']) {
-                    // Update the app to reflect a signed in user
-                    // Hide the sign-in button now that the user is authorized, for example:
-                    document.getElementById('signinButton').setAttribute('style', 'display: none');
-                } else {
-                    // Update the app to reflect a signed out user
-                    // Possible error values:
-                    //   "user_signed_out" - User is signed-out
-                    //   "access_denied" - User denied access to your app
-                    //   "immediate_failed" - Could not automatically log in the user
-                    console.log('Sign-in state: ' + authResult['error']);
-                }
-            }
-        </script>
         <h1 class="header">Garrett's Clock</h1>
         <h3>
             <div id="g_clock"></div>
@@ -80,12 +49,27 @@
             </div>
         </div>
 
-        <div id="gSignInWrapper">
-            <div id="myButton" class="classesToStyleWith">
-                Sign in with Google
-            </div>
-        </div>
+        <span id="signinButton">
+            <span
+                class="g-signin"
+                data-callback="signinCallback"
+                data-clientid="302057691424-bq6vvd8vari4sjcg126foe00lhgdrdkp.apps.googleusercontent.com"
+                data-cookiepolicy="single_host_origin"
+                data-requestvisibleactions="http://schmea.org/AddAction"
+                data-scope="profile">
+            </span>
+        </span>
 
+        <script>
+            function signinCallback(authResult) {
+                if (authResult["status"]["signed_in"]) {
+                    document.getElementById("signinButton").setAttribute("style", "display: none");
+                }
+                else {
+                    console.log("Sign-in state: " + authResult["error"]);
+                }
+            }
+        </script>
         <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
         <script src="//www.parsecdn.com/js/parse-1.3.4.min.js"></script>
         <script type="text/javascript" src="js/clock.js"></script>
