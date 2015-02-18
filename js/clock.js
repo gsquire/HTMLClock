@@ -6,6 +6,8 @@
  */
 "use strict";
 
+var USER_ID; // Used to keep track of who is logged in to the app.
+
 function getTime() {
     // Execute the function every second.
     window.setTimeout(getTime, 1000);
@@ -124,7 +126,8 @@ function addAlarm() {
     var alarmObject = new AlarmObject();
 
     // Save the alarm to Parse.
-    alarmObject.save( {"time": time, "alarmName": alarmName}, {
+    // USER_ID is our global given to us by Google.
+    alarmObject.save( {"userId": USER_ID, "time": time, "alarmName": alarmName}, {
         success: function(alarmObject) {
             insertAlarm(hours, mins, ampm, alarmName, alarmObject.id);
             $("#" + alarmObject.id).click(deleteAlarm);
@@ -146,11 +149,13 @@ function fillSelects() {
 }
 
 // Interact with Parse now.
-function getAllAlarms() {
+// The parameter is the unique id given to me by Google.
+function getAllAlarms(userId) {
     Parse.initialize("oBE4i8C3eA0LxytpX8qolrZPQAHGEYGiiueJbtwK", "PabMP44i4foZaQoz3RjTRfMv1L7TSsbfAehbTZUM");
 
     var AlarmObject = Parse.Object.extend("Alarm");
     var query = new Parse.Query(AlarmObject);
+    query.equalTo("userId", USER_ID); // Ensure that we only get this user.
 
     query.find( {
         success: function(results) {
@@ -194,12 +199,15 @@ function deleteAlarm() {
 
 function signinCallback(authResponse) {
     if (authResponse["status"]["signed_in"]) {
+        $("#signinButton").hide(); // They have logged in.
+
         gapi.client.load("plus", "v1", function() {
             var request = gapi.client.plus.people.get( { "userId": "me" } );
 
             request.execute(function(resp) {
                 $("#userInformation").html("Welcome, " + resp["displayName"]);
-                console.log(resp);
+                USER_ID = resp["id"];
+                getAllAlarms(USER_ID);
             } );
         } );
     }
@@ -218,5 +226,4 @@ $(document).ready(function () {
     fillSelects();
     getTime();
     getTemp();
-    getAllAlarms();
 } );
