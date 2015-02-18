@@ -5,61 +5,8 @@
         <title>Clock</title>
         <link rel="stylesheet" type="text/css" href="css/clock.css">
         <link rel="stylesheet" type="text/css" href="css/alarm.css">
-
-        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
     </head>
     <body>
-        <div id="fb-root"></div>
-        <script>
-            (function(d, s, id) {
-                var js, fjs = d.getElementsByTagName(s)[0];
-                if (d.getElementById(id)) return;
-                js = d.createElement(s); js.id = id;
-                js.src = "//connect.facebook.net/en_US/sdk.js";
-                fjs.parentNode.insertBefore(js, fjs);
-            }(document, 'script', 'facebook-jssdk'));
-
-            window.fbAsyncInit = function() {
-                FB.init({
-                    appId: '1572714179640805',
-                    cookie: true,
-                    xfbml: true,
-                    version: 'v2.2'
-                });
-
-                function statusChangeCallback(response) {
-                    if (response.status === 'connected') {
-                        testApi();
-                    }
-                    else if (response.status = 'not_authorized') {
-                        $("#fbLogin").html("Please log in to FB");
-                    }
-                    else {
-                        $("#fbLogin").html("Please log in to FB");
-                    }
-                }
-
-                function checkLoginState() {
-                    FB.getLoginStatus(function (response) {
-                        statusChangeCallback(response);
-                    } );
-                }
-            };
-
-            function testAPI() {
-                FB.api("/me", function(response) {
-                    $("#fbLogin").html("Hi there, " + response.name);
-                } );
-            }
-
-            // Log in to FB.
-            function triggerFBLogin() {
-                FB.Login(function (response) {
-                    statusChangeCallback(response);
-                } );
-            }
-        </script>
-
         <h1 class="header">Garrett's Clock</h1>
         <h3>
             <div id="g_clock"></div>
@@ -100,13 +47,7 @@
             </div>
         </div>
 
-        <div>
-            <input type="button" value="Login to Facebook" class="button" id="fbLoginButton"/>
-        </div>
-
-        <div id="fbLogin">
-        </div>
-
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
         <script src="//www.parsecdn.com/js/parse-1.3.4.min.js"></script>
         <script type="text/javascript" src="js/clock.js"></script>
     </body>
