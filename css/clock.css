@@ -41,3 +41,7 @@ p {
 .hot {
     background-color: #E74C3C;
 }
+
+#signinButton {
+    text-align: center;
+}
