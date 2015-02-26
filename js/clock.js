@@ -135,6 +135,8 @@ function addAlarm() {
         }
     } );
 
+    // Send a Google Analytics event.
+    ga("send", "event", "Alarm" "Add");
 }
 
 // Fill the options for the select options in hours and minutes.
@@ -195,6 +197,9 @@ function deleteAlarm() {
 
     // Remove the alarm from the DOM.
     $("#" + objectId).remove();
+
+    // Google analytics.
+    ga("send", "event", "Alarm", "Delete");
 }
 
 function signinCallback(authResponse) {
